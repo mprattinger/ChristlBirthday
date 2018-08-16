@@ -60,6 +60,20 @@ function PartyGameViewModel() {
             });
     }
 
+    self.allOff = function(){
+        console.log("Sending all off to the server!")
+        $.post("/api/alloff").done(
+                function (result) {
+                    self.messages.push(new Message("Sent all off to the server!"));
+                    self.isShuffling(false);
+                    self.currentAnswer(-1);
+                })
+            .fail(function () {
+                console.log("Error sending allo ff!");
+                self.messages.push(new Message("Error sending all off!"));
+            });
+    }
+
     self.sendAnswerEnable = ko.computed(function(){
         if(self.isShuffling && self.currentAnswer() > 0) return true;
         else return false;
