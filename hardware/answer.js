@@ -12,17 +12,17 @@ if (os.platform() == 'linux') {
 
 class Answer {
   constructor() {
-    this.answer1_red = new onoff(8, 'out');
-    this.answer1_green = new onoff(9, 'out');
-    this.answer1_blue = new onoff(7, 'out');
+    this.answer1_red = new onoff(2, 'out');
+    this.answer1_green = new onoff(3, 'out');
+    this.answer1_blue = new onoff(4, 'out');
 
-    this.answer2_red = new onoff(0, 'out');
-    this.answer2_green = new onoff(2, 'out');
-    this.answer2_blue = new onoff(3, 'out');
+    this.answer2_red = new onoff(17, 'out');
+    this.answer2_green = new onoff(27, 'out');
+    this.answer2_blue = new onoff(22, 'out');
 
-    this.answer3_red = new onoff(23, 'out');
-    this.answer3_green = new onoff(24, 'out');
-    this.answer3_blue = new onoff(25, 'out');
+    this.answer3_red = new onoff(13, 'out');
+    this.answer3_green = new onoff(19, 'out');
+    this.answer3_blue = new onoff(26, 'out');
 
     this.isShuffling = false;
   }
