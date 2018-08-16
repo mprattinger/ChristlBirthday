@@ -43,14 +43,14 @@ class Routes {
         that.answer.shuffleOff(() => {
           that.answer.switchAnswer(1, 'white', false);
           that.answer.switchAnswer(2, 'white', false);
-          that.answer.switchAnswer(2, 'white', false);
+          that.answer.switchAnswer(3, 'white', false);
           res.status(200);
           res.send('ok');
         });
       } else {
         that.answer.switchAnswer(1, 'white', false);
         that.answer.switchAnswer(2, 'white', false);
-        that.answer.switchAnswer(2, 'white', false);
+        that.answer.switchAnswer(3, 'white', false);
         res.status(200);
         res.send('ok');
       }
