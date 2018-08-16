@@ -19,6 +19,10 @@ class OnOffMock{
         winston.info("Would write " + val + " to pin " + this.pin);
         callback(null, val);
     }
+
+    writeSync(val){
+        winston.info("Would write " + val + " to pin " + this.pin);
+    }
 }
 
 module.exports = OnOffMock;

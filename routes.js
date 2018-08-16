@@ -2,37 +2,33 @@
 
 const express = require("express");
 const winston = require("winston");
+const Answer = require("./hardware/answer");
 
 class Routes {
 
     constructor() {
         this.router = express.Router();
         this._createRoutes();
+        this.answer = new Answer();
     }
 
     _createRoutes() {
         var that = this;
 
         that.router.route("/shuffle")
-            .get((req, res) => {
-
-            })
-            .post((req, res) => {
+            .post(async (req, res) => {
                 //Shuffling the stuff
                 winston.debug("Shuffling....")
+                that.answer.shuffle();
                 res.status(200);
                 res.send("ok");
             })
-            .put((req, res) => {
-                //Update
-            })
-            .delete((req, res) => {
-                //Delete
-            });
         that.router.route("/setanswer")
             .post((req, res) => {
                 var data = req.body;
                 winston.debug("Setting answer to " + data.answer);
+                that.answer.isShuffling = false;
+                that.answer.switchAnswer(data.answer, white, true);
                 res.status(200);
                 res.send("ok");
             });
