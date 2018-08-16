@@ -24,10 +24,11 @@ class Routes {
                 res.send("ok");
             })
         that.router.route("/setanswer")
-            .post((req, res) => {
+            .post(async (req, res) => {
                 var data = req.body;
                 winston.debug("Setting answer to " + data.answer);
                 that.answer.isShuffling = false;
+                await this.answer.sleep(1000);
                 that.answer.switchAnswer(data.answer, "white", true);
                 res.status(200);
                 res.send("ok");
