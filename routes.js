@@ -28,7 +28,7 @@ class Routes {
                 var data = req.body;
                 winston.debug("Setting answer to " + data.answer);
                 that.answer.isShuffling = false;
-                that.answer.switchAnswer(data.answer, white, true);
+                that.answer.switchAnswer(data.answer, "white", true);
                 res.status(200);
                 res.send("ok");
             });
@@ -36,6 +36,7 @@ class Routes {
             .post((req, res) => {
                 var data = req.body;
                 winston.debug("Activating manual answer " + data.answer + " and stopping shuffle...");
+                that.answer.switchAnswer(data.answer, "white", true);
                 res.status(200);
                 res.send("ok");
             });
