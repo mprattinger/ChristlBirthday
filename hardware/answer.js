@@ -29,30 +29,43 @@ class Answer {
 
   shuffle() {
     return new Promise(async res => {
-        var that = this;
-        this.isShuffling = true;
-        while (that.isShuffling) {
-            that.switchAnswer(1, 'white', true);
-            that.switchAnswer(2, 'white', true);
-            that.switchAnswer(3, 'white', true);
-            await that.sleep(500);
-            that.switchAnswer(2, 'white', false);
-            that.switchAnswer(3, 'white', false);
-            await that.sleep(500);
-            that.switchAnswer(1, 'white', false);
-            that.switchAnswer(2, 'white', true);
-            await that.sleep(500);
-            that.switchAnswer(2, 'white', false);
-            that.switchAnswer(3, 'white', true);
-            await that.sleep(500);
-            that.switchAnswer(1, 'white', false);
-            that.switchAnswer(2, 'white', false);
-            that.switchAnswer(3, 'white', false);
-            await that.sleep(500);
-        }
+      var that = this;
+      this.isShuffling = true;
+      while (that.isShuffling) {
+        that.switchAnswer(1, 'white', true);
+        that.switchAnswer(2, 'white', true);
+        that.switchAnswer(3, 'white', true);
+        await that.sleep(500);
+        that.switchAnswer(2, 'white', false);
+        that.switchAnswer(3, 'white', false);
+        await that.sleep(500);
+        that.switchAnswer(1, 'white', false);
+        that.switchAnswer(2, 'white', true);
+        await that.sleep(500);
+        that.switchAnswer(2, 'white', false);
+        that.switchAnswer(3, 'white', true);
+        await that.sleep(500);
+        that.switchAnswer(1, 'white', false);
+        that.switchAnswer(2, 'white', false);
+        that.switchAnswer(3, 'white', false);
+        await that.sleep(500);
+      }
 
-        res();
+      that.switchAnswer(1, 'white', false);
+      that.switchAnswer(2, 'white', false);
+      that.switchAnswer(3, 'white', false);
+
+      if (typeof that.shuffleFinished == 'function') {
+        that.shuffleFinished();
+      }
+      res();
     });
+  }
+
+  shuffleOff(cb) {
+    var that = this;
+    that.shuffleFinished = cb;
+    that.isShuffling = false;
   }
 
   switchAnswer(answer, color, on) {
@@ -60,10 +73,6 @@ class Answer {
     if (typeof color === 'undefined') {
       color = 'white';
     }
-
-    that.switchAnswer(1, 'white', false);
-    that.switchAnswer(2, 'white', false);
-    that.switchAnswer(3, 'white', false);
 
     switch (color) {
       case 'white':
@@ -77,7 +86,7 @@ class Answer {
         self['answer' + answer + '_green'].writeSync(0);
         self['answer' + answer + '_blue'].writeSync(0);
         break;
-        case 'green':
+      case 'green':
         self['answer' + answer + '_red'].writeSync(0);
         self['answer' + answer + '_green'].writeSync(on ? 1 : 0);
         self['answer' + answer + '_blue'].writeSync(0);
