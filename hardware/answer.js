@@ -50,9 +50,6 @@ class Answer {
             that.switchAnswer(3, 'white', false);
             await that.sleep(500);
         }
-        that.switchAnswer(1, 'white', false);
-        that.switchAnswer(2, 'white', false);
-        that.switchAnswer(3, 'white', false);
 
         res();
     });
@@ -63,6 +60,10 @@ class Answer {
     if (typeof color === 'undefined') {
       color = 'white';
     }
+
+    that.switchAnswer(1, 'white', false);
+    that.switchAnswer(2, 'white', false);
+    that.switchAnswer(3, 'white', false);
 
     switch (color) {
       case 'white':
